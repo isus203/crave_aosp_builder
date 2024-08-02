@@ -455,6 +455,10 @@ jobs:
         $LUNCH && \
         make installclean && \
         ${{ github.event.inputs.BUILD_COMMAND }}"
+
+        echo "Build is queued! Please wait for your build to start."
+        echo "Check foss.crave.io Dashboard to see builds"
+        echo "Running build's log will show up here!"
       timeout-minutes: 960
 
       # Send Build 'status' notification (Success)
@@ -499,7 +503,7 @@ jobs:
           jobMessage="has Failed!"
         fi
 
-        send_telegram_message "Crave Project: ${{ github.event.inputs.BASE_PROJECT }}%0ACrave ProjectID: $PROJECTID %0ABuild for ${{ github.event.inputs.DEVICE_NAME }} has status: $jobMessage %0ACheck Progress at: %0Ahttps://github.com/$(echo "${{ github.repository }}" | sed 's@_@\\_@g')/actions/runs/${{ github.run_id }}"
+        send_telegram_message "Crave Project: ${{ github.event.inputs.BASE_PROJECT }}%0ACrave ProjectID: $PROJECTID %0ABuild for ${{ github.event.inputs.DEVICE_NAME }} $jobMessage %0ACheck Progress at: %0Ahttps://github.com/$(echo "${{ github.repository }}" | sed 's@_@\\_@g')/actions/runs/${{ github.run_id }}"
         # Todo: error.log link
       env:
         chatId: ${{ secrets.TELEGRAM_TO }}
