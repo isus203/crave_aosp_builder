@@ -26,6 +26,7 @@ on:
           - 'LineageOS 18.1'
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
+          - 'Crdroid 14'
       BUILD_DIFFERENT_ROM:
         description: "Command to initialize a different 'repo' project:"
         required: false
@@ -40,15 +41,15 @@ on:
       LOCAL_MANIFEST_BRANCH:
         description: "Personal local manifest's branch:"
         required: false
-        default: 'lineage-oxygen'
+        default: 'lineage-KH7n'
       DEVICE_NAME:
         description: "Device's codename:"
         required: true
-        default: "oxygen"
+        default: "KH7n"
       PRODUCT_NAME:
         description: "Product to build:"
         required: true
-        default: "lineage_oxygen"
+        default: "KH7n"
       BUILD_COMMAND:
         description: 'Command to be used for compiling:'
         required: true
@@ -56,7 +57,7 @@ on:
       BUILD_TYPE:
         description: 'Type of build:'
         required: true
-        default: 'userdebug'
+        default: 'user'
         type: choice
         options: 
         - 'eng'
@@ -84,7 +85,6 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Arrow13"
           export PROJECTID="73"
           export REPO_INIT="repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1 --depth=1"
-
         ;;
         "DerpFest 14.0")
           export PROJECTFOLDER="/crave-devspaces/DerpFest14"
@@ -130,6 +130,11 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Cyanogen14"
           export PROJECTID="83"
           export REPO_INIT="repo init -u https://github.com/accupara/los-cm14.1.git -b cm-14.1 --git-lfs --depth=1"
+        ;;
+        "Crdroid 14")
+          export PROJECTFOLDER="/crave-devspaces/crDroid"
+          export PROJECTID="72"
+          export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs --depth=1"
         ;;
         esac
 
