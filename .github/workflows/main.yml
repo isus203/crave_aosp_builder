@@ -27,6 +27,8 @@ on:
           - 'LineageOS 18.1'
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
+          - 'CrDroid 14'
+          
       BUILD_DIFFERENT_ROM:
         description: "Command to initialize a different 'repo' project:"
         required: false
@@ -141,6 +143,11 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Cyanogen14"
           export PROJECTID="83"
           export REPO_INIT="repo init -u https://github.com/accupara/los-cm14.1.git -b cm-14.1 --git-lfs --depth=1"
+        ;;
+        "CrDroid 14")
+          export PROJECTFOLDER="/crave-devspaces/crDroid"
+          export PROJECTID="93"
+          export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs --depth=1"
         ;;
         esac
 
