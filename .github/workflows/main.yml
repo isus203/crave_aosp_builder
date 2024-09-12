@@ -145,7 +145,7 @@ jobs:
           export REPO_INIT="repo init -u https://github.com/accupara/los-cm14.1.git -b cm-14.1 --git-lfs --depth=1"
         ;;
         "CrDroid 14")
-          export PROJECTFOLDER="/crave-devspaces/crDroid"
+          export PROJECTFOLDER="/crave-devspaces/crDroid14"
           export PROJECTID="93"
           export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs --depth=1"
         ;;
