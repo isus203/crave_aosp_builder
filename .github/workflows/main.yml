@@ -13,12 +13,11 @@ on:
       BASE_PROJECT:
         description: 'Choose a base project:'
         required: true
-        default: 'LineageOS 22.0'
+        default: 'LineageOS 21.0'
         type: choice
         options:
           - 'LineageOS 20.0'
           - 'LineageOS 21.0'
-          - 'LineageOS 22.0'
           - 'ArrowOS 13.1'
           - 'DerpFest 14.0'
           - 'CipherOS 14'
@@ -27,8 +26,7 @@ on:
           - 'LineageOS 18.1'
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
-          - 'CrDroid 14'
-          
+          - 'AOSP'
       BUILD_DIFFERENT_ROM:
         description: "Command to initialize a different 'repo' project:"
         required: false
@@ -39,19 +37,19 @@ on:
       LOCAL_MANIFEST:
         description: "Personal local manifest [repository or raw]:"
         required: true
-        default: 'https://github.com/tecno-mt6768/local_manifest'
+        default: 'https://github.com/sounddrill31/local_manifests_oxygen'
       LOCAL_MANIFEST_BRANCH:
         description: "Personal local manifest's branch:"
         required: false
-        default: 'lineage-KH7n'
+        default: 'lineage-21-qpr3'
       DEVICE_NAME:
         description: "Device's codename:"
         required: true
-        default: "KH7n"
+        default: "oxygen"
       PRODUCT_NAME:
         description: "Product to build:"
         required: true
-        default: "KH7n"
+        default: "oxygen"
       BUILD_COMMAND:
         description: 'Command to be used for compiling:'
         required: true
@@ -59,7 +57,7 @@ on:
       BUILD_TYPE:
         description: 'Type of build:'
         required: true
-        default: 'user'
+        default: 'userdebug'
         type: choice
         options: 
         - 'eng'
@@ -93,6 +91,7 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Arrow13"
           export PROJECTID="73"
           export REPO_INIT="repo init -u https://github.com/ArrowOS/android_manifest.git -b arrow-13.1 --depth=1"
+
         ;;
         "DerpFest 14.0")
           export PROJECTFOLDER="/crave-devspaces/DerpFest14"
@@ -103,11 +102,6 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/Lineage21"
           export PROJECTID="72"
           export REPO_INIT="repo init -u https://github.com/LineageOS/android.git -b lineage-21.0 --git-lfs --depth=1"
-        ;;
-        "LineageOS 22.0")
-          export PROJECTFOLDER="/crave-devspaces/Lineage22"
-          export PROJECTID="97"
-          export REPO_INIT="repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs --depth=1"
         ;;
         "LineageOS 20.0")
           export PROJECTFOLDER="/crave-devspaces/Lineage20"
@@ -144,10 +138,10 @@ jobs:
           export PROJECTID="83"
           export REPO_INIT="repo init -u https://github.com/accupara/los-cm14.1.git -b cm-14.1 --git-lfs --depth=1"
         ;;
-        "CrDroid 14")
-          export PROJECTFOLDER="/crave-devspaces/crDroid14"
-          export PROJECTID="93"
-          export REPO_INIT="repo init -u https://github.com/crdroidandroid/android.git -b 14.0 --git-lfs --depth=1"
+        "AOSP")
+          export PROJECTFOLDER="/crave-devspaces/AOSP"
+          export PROJECTID="35"
+          export REPO_INIT="repo init -u https://android.googlesource.com/platform/manifest.git -b master --git-lfs --depth=1"
         ;;
         esac
 
