@@ -27,7 +27,6 @@ on:
           - 'LineageOS 16.0'
           - 'CyanogenMOD 14.1'
           - 'AOSP'
-          - 'YAAP'
       BUILD_DIFFERENT_ROM:
         description: "Command to initialize a different 'repo' project:"
         required: false
@@ -143,11 +142,6 @@ jobs:
           export PROJECTFOLDER="/crave-devspaces/AOSP"
           export PROJECTID="35"
           export REPO_INIT="repo init -u https://android.googlesource.com/platform/manifest.git -b master --git-lfs --depth=1"
-        ;;
-        "YAAP")
-          export PROJECTFOLDER="/crave-devspaces/YAAP"
-          export PROJECTID="45"
-          export REPO_INIT="repo init -u https://github.com/yaap/manifest.git -b fifteen --git-lfs --depth=1"
         ;;
         esac
 
