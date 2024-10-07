@@ -157,7 +157,7 @@ jobs:
           if [[ "${{ github.event.inputs.LOCAL_MANIFEST }}" =~ \.xml(/)?$ ]]; then
             local_manifest_url="${{ github.event.inputs.LOCAL_MANIFEST }}"
             export local_manifest_url="${local_manifest_url%/}"  # remove trailing slash if it exists
-            LOCAL_MANIFEST="mkdir -p .repo/local_manifests && rm -rf .repo/local_manifests/* || true && curl -o .repo/local_manifests/local_manifest.xml ${local_manifest_url}"
+            LOCAL_MANIFEST="mkdir -p .repo/local_manifests && sudo rm -rf .repo/local_manifests/* || true && curl -o .repo/local_manifests/local_manifest.xml ${local_manifest_url}"
           else
             export LOCAL_MANIFEST="git clone ${{ github.event.inputs.LOCAL_MANIFEST }} --depth 1 -b ${{github.event.inputs.LOCAL_MANIFEST_BRANCH}} .repo/local_manifests"
           fi
@@ -249,7 +249,7 @@ jobs:
     - name: Test Local Manifests
       if: ${{ github.event.inputs.BUILD_DIFFERENT_ROM != 'skip' }}
       run: |
-        rm -rf tester
+        sudo rm -rf tester
         mkdir tester
         cd tester 
         if [ "${{ github.event.inputs.BUILD_DIFFERENT_ROM }}" == "echo 'Build Starting!'" ]; then
@@ -262,7 +262,7 @@ jobs:
 
         timeout 1m repo sync --force-sync || { exit_code=$?; [ $exit_code -eq 124 ] || (echo "Error: Process failed with exit code $exit_code"; exit $exit_code); }
         du -csh . # Output Size when done
-        rm -rf .repo
+        sudo rm -rf .repo
       timeout-minutes: 10
     outputs:
       PROJECTFOLDER: ${{ needs.prepare.outputs.PROJECTFOLDER }}
@@ -389,7 +389,7 @@ jobs:
           mv ${PWD}/crave ${HOME}/bin/
           sudo ln -sf /home/${USER}/bin/crave /usr/bin/crave
           envsubst < ${PWD}/crave.conf.sample >> ${PWD}/crave.conf
-          rm -rf ${PWD}/crave.conf.sample
+          sudo rm -rf ${PWD}/crave.conf.sample
           cp crave.conf $PROJECTFOLDER
         fi
         if [[ -z "${{ secrets.CUSTOM_YAML }}" ]]; then
@@ -436,7 +436,7 @@ jobs:
         echo "Running build's log will show up here!"
 
 
-        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && \
+        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "sudo rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && \
         # Clone local_manifests repository
         $BUILD_DIFFERENT_ROM ; \
         $LOCAL_MANIFEST && \
