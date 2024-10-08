@@ -106,6 +106,7 @@ jobs:
         ;;
         "LineageOS 22.0")
           export PROJECTFOLDER="/crave-devspaces/Lineage22"
+          export PROJECTID="78"
           export REPO_INIT="repo init -u https://github.com/LineageOS/android.git -b lineage-22.0 --git-lfs --depth=1"
         ;;
         "LineageOS 20.0")
@@ -441,7 +442,7 @@ jobs:
         echo "Running build's log will show up here!"
 
 
-        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "sudo rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && sudo rm -rf device/* vendor/* out/error.log && \
+        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "sudo rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && sudo rm -rf device/* vendor/* && \
         # Clone local_manifests repository
         $BUILD_DIFFERENT_ROM ; \
         $LOCAL_MANIFEST && \
