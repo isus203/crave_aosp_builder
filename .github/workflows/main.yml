@@ -442,7 +442,7 @@ jobs:
         echo "Running build's log will show up here!"
 
 
-        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "sudo rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && sudo rm -rf device/* vendor/* && sudo touch out/error.log && \
+        crave ${{ secrets.CRAVE_FLAGS }} run --no-patch --${CLEAN} "sudo rm -rf .repo/local_manifests/ ${{ github.event.inputs.REMOVALS }} && sudo rm -rf device/* vendor/* && \
         # Clone local_manifests repository
         $BUILD_DIFFERENT_ROM ; \
         $LOCAL_MANIFEST && \
