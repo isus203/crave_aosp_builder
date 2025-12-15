@@ -25,6 +25,6 @@ rm -rf actions-runner || true
   
   echo "Extracting Zip"
     mkdir -p actions-runner
-    tar -xvf actions-runner-linux-x64.tar.gz -C actions-runner
+    tar -xvf actions-runner-linux-x64-*.tar.gz -C actions-runner
   echo "Removing Leftovers"
-    rm -rf actions-runner-linux-x64.tar.gz # Extract package and remove leftovers
+    rm -rf actions-runner-linux-x64-*.tar.gz # Extract package and remove leftovers
